@@ -60,7 +60,7 @@ jaro_winkler.distance = function(a, b) {
       if (!a_flag[i]) {
         for (var j = 0; j < b_len; j++) {
           if (!b_flag[j]) {
-            if (adjwt[a[i]] === b[j]) {
+            if (adjwt[a[i]].includes(b[j])) {
               N_simi += 3;
               b_flag[j] = 2;
               break;
@@ -100,43 +100,25 @@ jaro_winkler.distance = function(a, b) {
 
 // The char adjustment table used above
 jaro_winkler.adjustments = {
-  'A': 'E',
-  'A': 'I',
-  'A': 'O',
-  'A': 'U',
-  'B': 'V',
-  'E': 'I',
-  'E': 'O',
-  'E': 'U',
-  'I': 'O',
-  'I': 'U',
-  'O': 'U',
-  'I': 'Y',
-  'E': 'Y',
-  'C': 'G',
-  'E': 'F',
-  'W': 'U',
-  'W': 'V',
-  'X': 'K',
-  'S': 'Z',
-  'X': 'S',
-  'Q': 'C',
-  'U': 'V',
-  'M': 'N',
-  'L': 'I',
-  'Q': 'O',
-  'P': 'R',
-  'I': 'J',
-  '2': 'Z',
-  '5': 'S',
-  '8': 'B',
-  '1': 'I',
-  '1': 'L',
-  '0': 'O',
-  '0': 'Q',
-  'C': 'K',
-  'G': 'J',
-  'E': ' ',
-  'Y': ' ', 
-  'S': ' '
+  'A': ['E','I','O','U'],
+  'B': ['V'],
+  'E': ['I','O','U','Y','F',' '],
+  'I': ['O','U','Y','J'],
+  'O': ['U'],
+  'C': ['G','K'],
+  'W': ['U','V'],
+  'X': ['K','S'],
+  'S': ['Z',' '],
+  'Q': ['C','O'],
+  'U': ['V'],
+  'M': ['N'],
+  'L': ['I'],
+  'P': ['R'],
+  '2': ['Z'],
+  '5': ['S'],
+  '8': ['B'],
+  '1': ['I','L'],
+  '0': ['O','Q'],
+  'G': ['J'],
+  'Y': [' ']
 }
